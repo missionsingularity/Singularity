@@ -11,3 +11,7 @@ original-export-backup/
 *.tsbuildinfo
 .vercel/
 .wrangler/*.tsbuildinfo
+
+/design-reference/
+/framer-exact-export/
+/original-assets/
