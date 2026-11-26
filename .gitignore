@@ -8,5 +8,6 @@ dist/
 !.env.example
 original-export-backup/
 *.log
+*.tsbuildinfo
 .vercel/
 .wrangler/*.tsbuildinfo

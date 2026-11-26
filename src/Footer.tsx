@@ -15,7 +15,7 @@ export default function Footer({ slots = [] }: { slots?: string[] }) {
               <p className={styles["p-57"]}>{slots[1] ?? "Start with one goal, connect the right context, and see what your team can move forward."}</p>
             </div>
             <div className={styles["div-105"]}>
-              <a className={styles["desktop-primary"]} href="./#pricing">
+                <a className={styles["desktop-primary"]} href="/#pricing">
                 <div className={styles["div-9"]}>
                   <p className={styles["p-8"]}>{slots[2] ?? "Get started"}</p>
                 </div>
@@ -49,29 +49,29 @@ export default function Footer({ slots = [] }: { slots?: string[] }) {
               </div>
               <div className={styles["div-110"]}>
                 <div className={styles["p-59"]}>
-                  <a className={styles["a-2"]} href="./#how-it-works">{slots[7] ?? "How it works"}</a>
+                  <a className={styles["a-2"]} href="/#how-it-works">{slots[7] ?? "How it works"}</a>
                 </div>
               </div>
               <div className={styles["div-2"]}>
                 <div className={styles["p-60"]}>
-                  <a className={styles["a-2"]} href="./#features">{slots[8] ?? "Features"}</a>
+                  <a className={styles["a-2"]} href="/#features">{slots[8] ?? "Features"}</a>
                 </div>
               </div>
               <div className={styles["div-3"]}>
                 <div className={styles["p-61"]}>
-                  <a className={styles["a-2"]} href="./#capabilities">{slots[9] ?? "Capabilities"}</a>
+                  <a className={styles["a-2"]} href="/#capabilities">{slots[9] ?? "Capabilities"}</a>
                 </div>
               </div>
               <div className={styles["div-4"]}>
                 <div className={styles["p-62"]}>
-                  <a className={styles["a-2"]} href="./#pricing">
+                  <a className={styles["a-2"]} href="/#pricing">
                     <span className={styles["a-2"]}>{slots[10] ?? "Implementation"}</span>
                   </a>
                 </div>
               </div>
               <div className={styles["div-5"]}>
                 <div className={styles["p-63"]}>
-                  <a className={styles["a-2"]} href="./#security">{slots[11] ?? "Security"}</a>
+                  <a className={styles["a-2"]} href="/#security">{slots[11] ?? "Security"}</a>
                 </div>
               </div>
             </div>

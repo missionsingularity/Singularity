@@ -55,8 +55,6 @@ import Minus from "./Minus"
 import Plus from "./Plus"
 import Footer from "./Footer"
 import Template2 from "./Template2"
-import Framer from "./Framer"
-import Text from "./Text"
 
 export default function NotFound({ slots = [] }: { slots?: string[] }) {
   return (
@@ -115,20 +113,6 @@ export default function NotFound({ slots = [] }: { slots?: string[] }) {
           <div className={styles["lenis"]} />
         </div>
         <Template2 slots={[]} />
-      </div>
-      <div className={styles["div-226"]}>
-        <a className={styles["light"]} href="https://www.framer.com">
-          <div className={styles["backdrop"]} />
-          <div className={styles["content-13"]}>
-            <div className={styles["div-227"]}>
-              <Framer slots={[]} />
-            </div>
-            <p className={styles["p-98"]}>{slots[0] ?? "Create a free website with Framer, the website builder loved by startups, designers and agencies."}</p>
-            <Text slots={[]} />
-          </div>
-          <div className={styles["bottom"]} />
-          <div className={styles["border"]} />
-        </a>
       </div>
       <div className={styles["div-228"]}>
         <SvgGraphic className={styles["svg-13"]} html={"<svg id=\"3467097230\" display=\"block\" role=\"presentation\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\" data-f2c-idx=\"140\"><path d=\"M 0 0 L 16 0\" fill=\"transparent\" height=\"1px\" id=\"YnobPTYMb\" stroke-dasharray=\"\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"var(--js9iwy, 2)\" stroke=\"var(--1m973uw, rgb(0,0,0))\" transform=\"translate(4 5)\" width=\"16px\" data-f2c-idx=\"141\"></path><path d=\"M 0 0 L 16 0\" fill=\"transparent\" height=\"1px\" id=\"Cb0Gao21R\" stroke-dasharray=\"\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"var(--js9iwy, 2)\" stroke=\"var(--1m973uw, rgb(0,0,0))\" transform=\"translate(4 12)\" width=\"16px\" data-f2c-idx=\"142\"></path><path d=\"M 0 0 L 16 0\" fill=\"transparent\" height=\"1px\" id=\"oPtuyu4df\" stroke-dasharray=\"\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"var(--js9iwy, 2)\" stroke=\"var(--1m973uw, rgb(0,0,0))\" transform=\"translate(4 19)\" width=\"16px\" data-f2c-idx=\"143\"></path></svg>"} />

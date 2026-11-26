@@ -9,8 +9,21 @@ import { useState, type ReactNode } from "react"
  */
 export default function States({ a, b }: { a: ReactNode; b: ReactNode }) {
   const [second, setSecond] = useState(false)
+  const toggle = () => setSecond(value => !value)
   return (
-    <div style={{ display: "contents" }} onClick={() => setSecond(v => !v)}>
+    <div
+      style={{ display: "contents" }}
+      role="button"
+      tabIndex={0}
+      aria-expanded={second}
+      onClick={toggle}
+      onKeyDown={event => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault()
+          toggle()
+        }
+      }}
+    >
       {second ? b : a}
     </div>
   )

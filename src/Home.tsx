@@ -56,8 +56,6 @@ import Minus from "./Minus"
 import Plus from "./Plus"
 import Footer from "./Footer"
 import Template2 from "./Template2"
-import Framer from "./Framer"
-import Text from "./Text"
 
 export default function Home({ slots = [] }: { slots?: string[] }) {
   return (
@@ -1268,20 +1266,6 @@ export default function Home({ slots = [] }: { slots?: string[] }) {
           <div className={styles["lenis"]} />
         </div>
         <Template2 slots={[]} />
-      </div>
-      <div className={styles["div-226"]}>
-        <a className={styles["light"]} href="https://www.framer.com">
-          <div className={styles["backdrop"]} />
-          <div className={styles["content-13"]}>
-            <div className={styles["div-227"]}>
-              <Framer slots={[]} />
-            </div>
-            <p className={styles["p-98"]}>{slots[0] ?? "Create a free website with Framer, the website builder loved by startups, designers and agencies."}</p>
-            <Text slots={[]} />
-          </div>
-          <div className={styles["bottom"]} />
-          <div className={styles["border"]} />
-        </a>
       </div>
       <div className={styles["div-228"]}>
         <SvgGraphic className={styles["svg-12"]} html={"<svg width=\"26\" height=\"26\" viewBox=\"0 0 26 26\" fill=\"none\" id=\"svg-904218853_1448\" data-f2c-idx=\"3479\">\n<g filter=\"url(#svg-904218853_1448_filter0_d_4_35)\" data-f2c-idx=\"3480\">\n<path d=\"M11.8924 23.7113L7.33378 7.71982C7.0984 6.89409 7.95602 6.18106 8.73584 6.55413L23.8385 13.7792C24.6416 14.1634 24.5812 15.3159 23.7425 15.6131L17.5312 17.8139C17.3056 17.8938 17.1164 18.0511 16.9978 18.2574L13.7318 23.9361C13.2908 24.7029 12.1347 24.5616 11.8924 23.7113Z\" fill=\"#1570EF\" data-f2c-idx=\"3481\"></path>\n<path d=\"M6.85075 7.8544C6.49768 6.61583 7.78362 5.54674 8.95335 6.10628L24.0564 13.3314C25.2607 13.9078 25.1699 15.6359 23.9119 16.0816L17.7012 18.2825C17.5885 18.3224 17.4939 18.4012 17.4346 18.5041L14.1679 24.1829C13.5065 25.3329 11.7731 25.1214 11.4093 23.8463L6.85075 7.8544Z\" stroke=\"#1570EF\" data-f2c-idx=\"3482\"></path>\n</g>\n<defs data-f2c-idx=\"3483\">\n<filter id=\"svg-904218853_1448_filter0_d_4_35\" x=\"4.28796\" y=\"4.45428\" width=\"23.1241\" height=\"23.9793\" filterUnits=\"userSpaceOnUse\" color-interpolation-filters=\"sRGB\" data-f2c-idx=\"3484\">\n<feFlood flood-opacity=\"0\" result=\"BackgroundImageFix\" data-f2c-idx=\"3485\"></feFlood>\n<feColorMatrix in=\"SourceAlpha\" type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0\" result=\"hardAlpha\" data-f2c-idx=\"3486\"></feColorMatrix>\n<feOffset dy=\"1\" data-f2c-idx=\"3487\"></feOffset>\n<feGaussianBlur stdDeviation=\"1\" data-f2c-idx=\"3488\"></feGaussianBlur>\n<feComposite in2=\"hardAlpha\" operator=\"out\" data-f2c-idx=\"3489\"></feComposite>\n<feColorMatrix type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.08 0\" data-f2c-idx=\"3490\"></feColorMatrix>\n<feBlend mode=\"normal\" in2=\"BackgroundImageFix\" result=\"effect1_dropShadow_4_35\" data-f2c-idx=\"3491\"></feBlend>\n<feBlend mode=\"normal\" in=\"SourceGraphic\" in2=\"effect1_dropShadow_4_35\" result=\"shape\" data-f2c-idx=\"3492\"></feBlend>\n</filter>\n</defs>\n</svg>"} />
