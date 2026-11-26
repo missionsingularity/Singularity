@@ -1,0 +1,12 @@
+node_modules
+dist
+.DS_Store
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+original-export-backup/
+*.log
+.vercel/
+.wrangler/
