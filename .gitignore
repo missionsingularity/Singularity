@@ -10,7 +10,6 @@ original-export-backup/
 *.log
 *.tsbuildinfo
 .vercel/
-.wrangler/*.tsbuildinfo
 
 /design-reference/
 /framer-exact-export/

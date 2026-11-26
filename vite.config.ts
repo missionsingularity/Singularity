@@ -22,6 +22,11 @@ export default defineConfig({
         next()
       })
       server.middlewares.use("/api/contact", async (req, res) => {
+        if (req.method !== "POST") {
+          req.headers.host = req.headers.host || "localhost"
+          await contactHandler(req, res)
+          return
+        }
         const chunks = []
         let size = 0
         for await (const chunk of req) {

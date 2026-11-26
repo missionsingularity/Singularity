@@ -1,15 +1,16 @@
 # Performance optimization report
 
-Date: 26 November 2026  
+Date: 27 November 2026
+
 Project: Singularity corporate website  
-Build under review: local Vite production build, served by `vite preview`  
+Build under review: local Vite production build, served by `vite preview`
 Browser: headless Chrome 158.0.8127.88 with Playwright
 
 ## Summary
 
 The primary issue found in the homepage was a set of about 1,500 infinite decorative animations. At the top of the page, 1,493 of these were outside the viewport but continued consuming browser work. The page now pauses offscreen infinite animations and resumes them as their visual group approaches the viewport. Entrance and finite animations are left alone. The controller honors `prefers-reduced-motion` by leaving Framer's existing behavior in control.
 
-The implementation is in the homepage HTML so it runs before the Framer bundle initializes. It groups animation targets by a nearby named Framer component (or section), observes those groups with a 250px viewport margin, and pauses/resumes infinite Web Animations API animations. This preserves the existing visual motion when a section is in or near view.
+The implementation is in the homepage HTML so it runs before the Framer bundle initializes. It groups animation targets by a nearby named Framer component (or section), observes those groups with a 250px viewport margin, and pauses/resumes infinite Web Animations API animations. This preserves the existing visual motion when a section is in or near view. The contact CTA helper now processes only added/edited links instead of rescanning the full page after every DOM mutation. Videos keep `preload="none"`; if a visitor starts playback and scrolls away, playback pauses and resumes when the video returns near the viewport. Local font URLs now start at `/assets/`, and the production build emits no unresolved asset warnings.
 
 ## Lab measurements
 
@@ -30,9 +31,13 @@ Measurements below came from the production build preview on the same machine an
 
 The 154 files under `site/public/assets` total about 10.1 MB on disk. Only a subset is fetched near initial load; more are fetched as content is scrolled into view. The homepage video remains `preload="none"` and is not downloaded merely for initial page load. The contact page is a separate entry point (about 3.8 KB JavaScript and 11 KB CSS in the build) and is not loaded as part of the homepage bundle.
 
+On 27 November, a repeat local production-preview trace recorded desktop initial LCP 780 ms (CLS 0.001), and a mobile 390×844 CPU ×4 / Slow 4G trace recorded initial LCP 1,408 ms. The scripted scroll samples were 66.8 ms average / 173.6 ms p95 on desktop, and 60.3 ms average / 118.1 ms p95 on mobile. These samples are variable and remain synthetic lab data; one throttled scroll sweep produced a 0.157 CLS total, while a repeated attribution sweep measured 0.00055. Treat the scrolling CLS measurement as variable and collect field data before drawing a production Core Web Vitals conclusion.
+
 ## Responsive and interaction checks
 
 The production preview was opened at widths 2560, 1920, 1440, 1280, 1024, 820, 768, 600, 430, 414, 390, 375, and 360 CSS pixels. Every width had no horizontal document overflow and no uncaught page errors. The mobile menu still exposes Implementation and Contact Us; Pricing is absent. At 390px emulation, offscreen infinite effects were paused at the top, resumed in the industry section, and paused again after returning to the top. No failed resource requests were observed in the final 390px load.
+
+The same 13-width overflow and page-error sweep passed for both the homepage and `/contact/`. Desktop and mobile Playwright smoke checks confirmed the official logo, hero media, loaded web fonts, CTA package query values, mobile navigation, and form validation. Video playback started when brought into view, paused offscreen, and resumed when brought back. The local Vercel-function middleware returned 405 for GET and 422 for an invalid POST; neither check sent a message. The Vercel project environment listing contained no configured variables at this audit, so valid contact submissions remain unavailable until the documented Resend and Upstash variables are configured. No email delivery is claimed.
 
 Before and after viewport captures are in [`verification/performance`](verification/performance/):
 
@@ -48,8 +53,10 @@ The captures confirm the page's structure and styling remain intact. Animation p
 - `npm run build` — passed (`tsc -b` and Vite production build).
 - `npm test` — passed, 7/7 API tests.
 - 13-width Playwright overflow and page-error sweep — passed.
+- 13-width homepage and Contact Us preview sweep — passed, 26 route/viewport combinations.
 - Desktop and mobile emulated animation pause/resume checks — passed.
 - Final mobile preview load — no failed requests.
+- Vite build — zero unresolved asset warnings after converting local font URLs to root-relative paths.
 
 Vite prints unresolved local font asset warnings for several Framer/Geist `.woff2` URLs. Those references are preserved for runtime resolution and the build succeeds. The page provides local/Arial placeholder fonts; no font requests failed in the final emulated mobile load.
 

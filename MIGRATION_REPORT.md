@@ -13,7 +13,7 @@ The export contains the complete single-page layout and runtime behavior. The bu
 - Changed the mobile navigation item from Pricing to Implementation in the Framer navigation runtime. The pricing section and its plan content remain intact.
 - Tuned the mobile header arrangement and hero subtitle width to match the recording. Restored same-page section navigation for Features, Capabilities, Implementation, and Security; the mobile menu closes after choosing a destination.
 - Localized seven testimonial portraits. Removed template badge hiding rules that also hid legitimate buttons, while continuing to suppress the promotional badge.
-- Replaced unresolved `framer.link` template destinations with disabled, internal placeholders. Login and sales actions need confirmed company destinations before activation.
+- Updated the relevant home page calls to action to route to the Contact Us inquiry page; the contact API is served by the existing Vercel function.
 - Kept the supplied recordings, original assets, and exact export outside the production source and excluded them from Git.
 
 ## Runtime and dependency inventory
@@ -25,4 +25,4 @@ The export contains the complete single-page layout and runtime behavior. The bu
 
 ## Open items
 
-Asset rights for the provided runtime, fonts, and media were not verified. The supplied corporate logo was used as provided. The reference set establishes a single landing page; no blog/CMS data, login backend, sales form backend, or additional route content was supplied. Cloudflare project connection, domain/DNS work, and production deployment remain external steps.
+Asset rights for the provided runtime, fonts, and media were not verified. The supplied corporate logo was used as provided. The reference set establishes a single landing page; no blog/CMS data, or login backend was supplied. The Contact Us form is implemented separately and uses the Vercel API function.
