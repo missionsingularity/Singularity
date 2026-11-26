@@ -1132,5 +1132,89 @@ html.lenis body {
         new MutationObserver(wireContactLinks).observe(document.documentElement, { childList: true, subtree: true });
       })();
     </script>
+    <script id="framer-offscreen-animation-controller">
+      (function () {
+        if (!window.IntersectionObserver || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+        var groups = new Map();
+        var pausedByViewport = new WeakSet();
+        var inView = new Map();
+        var scopeCache = new WeakMap();
+
+        function scopeFor(element) {
+          if (scopeCache.has(element)) return scopeCache.get(element);
+          var section = element.closest("main section, footer");
+          var parent = element.parentElement;
+          var scope = null;
+          while (parent && parent !== section) {
+            if (parent.hasAttribute("data-framer-name")) {
+              var height = parent.getBoundingClientRect().height;
+              if (height > 0 && height <= 700) {
+                scope = parent;
+                break;
+              }
+            }
+            parent = parent.parentElement;
+          }
+          scope = scope || section || document.body;
+          scopeCache.set(element, scope);
+          return scope;
+        }
+
+        function syncScope(scope, isNearViewport) {
+          var animations = groups.get(scope);
+          if (!animations) return;
+          animations.forEach(function (animation) {
+            var target = animation.effect && animation.effect.target;
+            if (!target) return;
+            var style = window.getComputedStyle(target);
+            var shouldRun = isNearViewport && target.isConnected && target.getClientRects().length > 0 && style.display !== "none" && style.visibility !== "hidden";
+            if (shouldRun && pausedByViewport.has(animation)) {
+              pausedByViewport.delete(animation);
+              animation.play();
+            } else if (!shouldRun && animation.playState === "running") {
+              pausedByViewport.add(animation);
+              animation.pause();
+            }
+          });
+        }
+
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            inView.set(entry.target, entry.isIntersecting);
+            syncScope(entry.target, entry.isIntersecting);
+          });
+        }, { rootMargin: "250px 0px" });
+
+        function register(animation) {
+          if (!animation || !animation.effect || animation.effect.getTiming().iterations !== Infinity) return;
+          var target = animation.effect.target;
+          var scope = scopeFor(target);
+          if (!groups.has(scope)) {
+            groups.set(scope, new Set());
+            observer.observe(scope);
+          }
+          groups.get(scope).add(animation);
+        }
+
+        document.getAnimations().forEach(register);
+        document.addEventListener("animationstart", function (event) {
+          var animation = Array.from(event.target.getAnimations()).find(function (item) {
+            return item.animationName === event.animationName && item.effect && item.effect.getTiming().iterations === Infinity;
+          });
+          if (!animation) return;
+          var scope = scopeFor(event.target);
+          var count = groups.has(scope) ? groups.get(scope).size : 0;
+          register(animation);
+          if (groups.get(scope).size > count) syncScope(scope, inView.get(scope) || false);
+        }, true);
+
+        window.addEventListener("resize", function () {
+          inView.forEach(function (visible, scope) {
+            if (visible) syncScope(scope, true);
+          });
+        }, { passive: true });
+      })();
+    </script>
 </body>
 </html>
