@@ -1095,5 +1095,42 @@ html.lenis body {
 	<!-- Start of bodyEnd -->
 
     <!-- End of bodyEnd -->
+    <script>
+      (function () {
+        function wireContactLinks() {
+          document.querySelectorAll("a[href]").forEach(function (link) {
+            var text = (link.innerText || link.textContent || "").replace(/\s+/g, " ").trim().toLowerCase();
+            if (text === "log in") {
+              var textNode = Array.from(link.querySelectorAll("p,span")).find(function (node) { return (node.textContent || "").trim().toLowerCase() === "log in"; });
+              if (textNode) textNode.textContent = "Contact Us";
+              else link.textContent = "Contact Us";
+              link.setAttribute("href", "/contact?source=navigation");
+              link.removeAttribute("aria-disabled");
+              link.removeAttribute("tabindex");
+              link.style.pointerEvents = "";
+              return;
+            }
+            if (!/^(get started|start with team|start with a team|talk to sales|request a demo|contact us)$/.test(text)) return;
+            var source = "hero";
+            var packageName = "";
+            var section = link.closest("section");
+            if (link.closest("nav")) source = "navigation";
+            if (link.closest("footer") || (section && /footer/i.test(section.getAttribute("data-framer-name") || ""))) source = "footer";
+            else if (/pricing|implementation/i.test((section && section.getAttribute("data-framer-name")) || "")) source = "pricing";
+            var card = link.closest('[data-framer-name="Starter plan"]');
+            if (card) {
+              var plan = (card.innerText || "").trim().split(/\s+/)[0].toLowerCase();
+              if (/^(pilot|scale|transform)$/.test(plan)) packageName = plan;
+            }
+            link.setAttribute("href", "/contact?source=" + source + (packageName ? "&package=" + packageName : ""));
+            link.removeAttribute("aria-disabled");
+            link.removeAttribute("tabindex");
+            link.style.pointerEvents = "";
+          });
+        }
+        wireContactLinks();
+        new MutationObserver(wireContactLinks).observe(document.documentElement, { childList: true, subtree: true });
+      })();
+    </script>
 </body>
 </html>
