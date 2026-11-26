@@ -9,4 +9,4 @@ dist/
 original-export-backup/
 *.log
 .vercel/
-.wrangler/
+.wrangler/*.tsbuildinfo
