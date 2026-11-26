@@ -1,10 +1,6 @@
-﻿# Singularity Corporate Website Migration
+# Singularity corporate website
 
-## Status
-
-This workspace contains a Vite + React 19 export of the customized Fantom template. It is not a complete static Framer export: no Framer dump, original export manifest, local media directory, blog collection, or route data is present. The untouched working source snapshot is in `original-export-backup/` (dependency installation omitted).
-
-The app currently mounts `src/Home.tsx` on every URL. `src/_PAGES.md` reports only `Home.tsx` and `404.tsx`; the latter is not currently wired as a route. There are no industry or CMS article pages in the supplied source.
+The active site is based on the supplied customized Framer export in `site/`. Vite builds the local HTML, Framer runtime modules, fonts, images, video, service worker, and SEO files into `dist/` for Cloudflare Pages. The legacy React/TypeScript reconstruction remains in `src/` for history but is not the active page entry.
 
 ## Local development
 
@@ -13,15 +9,11 @@ The app currently mounts `src/Home.tsx` on every URL. `src/_PAGES.md` reports on
 - `npm run build`
 - `npm run preview`
 
-Build output is `dist/`, suitable for Cloudflare Pages static hosting. Cloudflare Pages configuration and deployment notes are in `DEPLOYMENT.md`.
+The Cloudflare Pages build command is `npm run build`; output directory is `dist/`. See [DEPLOYMENT.md](DEPLOYMENT.md) for deployment setup and open items.
 
-## Migration artifacts
+## Project notes
 
-- `PROGRESS.md` tracks completed discovery and remaining work.
-- `MIGRATION_REPORT.md` inventories the supplied code and external dependencies.
-- `VISUAL_COMPARISON_REPORT.md` records comparison status and limits.
-- `DEPLOYMENT.md` documents static hosting setup.
-
-## Important limitations
-
-The existing CSS references Framer-hosted fonts, and React components reference Framer-hosted images and video. Several template links use `framer.link`; profile images use `i.pravatar.cc`. These dependencies must be localized/replaced after reviewing the live site and confirming asset rights. No live comparison or production deployment has been performed. Do not treat the current output as a completed independent migration.
+- Supplied design recordings, exact export, and original assets remain outside the deployable source tree and are ignored by Git.
+- The mobile nav label is Implementation. The official supplied Singularity symbol is used in the site header and footer.
+- Template login and sales CTAs are visibly preserved but disabled until confirmed Singularity destinations are provided.
+- See [PROGRESS.md](PROGRESS.md), [MIGRATION_REPORT.md](MIGRATION_REPORT.md), and [VISUAL_COMPARISON_REPORT.md](VISUAL_COMPARISON_REPORT.md) for status and verification evidence.

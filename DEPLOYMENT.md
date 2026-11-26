@@ -1,25 +1,24 @@
-﻿# Cloudflare Pages deployment
+# Cloudflare Pages deployment
 
 ## Build settings
 
 - Framework preset: Vite
 - Build command: `npm run build`
 - Build output directory: `dist`
-- Node version: use a currently supported LTS version compatible with the lockfile.
+- Node version: use a supported LTS version compatible with the lockfile.
 
-The `public/_redirects` file is copied into `dist/` by Vite and provides an SPA fallback. `public/robots.txt` and `public/sitemap.xml` are also published as static files.
+The Vite configuration uses `site/` as its source root and copies `site/public/` to `dist/`. The output includes the local Framer runtime/assets, service worker mapping, `robots.txt`, `sitemap.xml`, and Cloudflare Pages `_redirects` fallback. No Framer subscription is needed to serve the built site.
 
 ## Domain
 
-Add the Cloudflare Pages custom domain `missionsingularity.com` in the Pages project, then follow Cloudflare's DNS instructions. Enable the apex and `www` hostnames only if the DNS and canonical redirect strategy is confirmed. Cloudflare provisions HTTPS for an active custom domain.
+The canonical URL and sitemap use `https://missionsingularity.com/`. Connect the Cloudflare Pages project to the repository, then configure the custom domain and DNS in Cloudflare. Add `www` only after confirming the preferred redirect/canonical strategy.
 
-## Before production
+## Before production launch
 
-1. Confirm the full route list and ensure every intended direct URL resolves after refresh.
-2. Localize permitted media/fonts and remove or document remaining third-party requests.
-3. Replace template links with confirmed Singularity destinations.
-4. Run visual and functional comparisons, including with Framer domains blocked.
-5. Verify sitemap entries and canonical metadata against the final route inventory.
-6. Connect a Git repository or upload the built `dist/` directory through Cloudflare Pages.
+1. Confirm actual login, onboarding, and sales destinations; those template buttons are currently disabled.
+2. Confirm usage rights for the provided Framer runtime, fonts, and other supplied media.
+3. Connect the Pages project to the `main` branch and run the build from a clean checkout.
+4. Confirm Pages serves the service worker and `/assets/` tree correctly, then test the deployed domain with third-party requests blocked.
+5. Recheck canonical domain, sitemap, HTTPS, and redirect behavior.
 
-No Cloudflare account, DNS change, or deployment was performed as part of this workspace change.
+No Cloudflare project, DNS, or production deployment was changed from this workspace.

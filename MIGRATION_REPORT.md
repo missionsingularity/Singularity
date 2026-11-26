@@ -1,26 +1,28 @@
-﻿# Migration report
+# Migration report
 
-## Supplied implementation
+## Active implementation
 
-- Vite 6 + React 19 + TypeScript; `src/main.tsx` mounts `src/Home.tsx` directly.
-- `src/_PAGES.md` lists `Home.tsx` and `404.tsx`; there is no router or CMS implementation.
-- The design is primarily in `src/styles.module.css` and `src/globals.css`; interactive React components and SVG assets are retained.
-- `singularity-react/` is empty. No local public media directory, font files, Framer project dump, or generated route manifest was supplied.
-- `original-export-backup/` preserves the source files as found before migration changes.
+The active site is `site/index.html` plus the locally supplied Framer runtime, styles, fonts, images, video, and `f2c-sw.js` mapping under `site/public/assets/`. Vite remains the build tool and emits the independent static site to `dist/`. The previous `src/` React/TypeScript reconstruction is retained but is no longer the page entry. No new framework was introduced.
 
-## External dependencies identified
+The export contains the complete single-page layout and runtime behavior. The build preserves original asset URLs in the public tree because the export?s local service worker maps Framer asset requests to those local copies. The local site was tested with off-site requests blocked; page rendering and interactions continued to work.
 
-- `framerusercontent.com`: CSS font-face files; image URLs in Home, Footer, UserRolesCard and Video2; video media in Video2; likely additional assets in the large component source files.
-- `fonts.gstatic.com`: Geist font faces in `src/globals.css`.
-- `i.pravatar.cc`: hard-coded sample avatar images in Home.
-- `framer.link`: template/demo CTAs in pricing components (not a production company link).
-- `framer.com`: a template attribution link in Home.
-- `missionsingularity.com`: configured as the intended canonical production origin in the metadata artifacts.
+## Singularity-specific changes
 
-## Hosting and SEO changes
+- Replaced the export?s generic title/description/canonical/social metadata and search-index metadata with Singularity and the configured production domain.
+- Used the supplied official black and white Singularity SVG symbols in corporate logo placements.
+- Changed the mobile navigation item from Pricing to Implementation in the Framer navigation runtime. The pricing section and its plan content remain intact.
+- Tuned the mobile header arrangement and hero subtitle width to match the recording. Restored same-page section navigation for Features, Capabilities, Implementation, and Security; the mobile menu closes after choosing a destination.
+- Localized seven testimonial portraits. Removed template badge hiding rules that also hid legitimate buttons, while continuing to suppress the promotional badge.
+- Replaced unresolved `framer.link` template destinations with disabled, internal placeholders. Login and sales actions need confirmed company destinations before activation.
+- Kept the supplied recordings, original assets, and exact export outside the production source and excluded them from Git.
 
-The site remains on its existing Vite runtime. Added canonical/title/description/Open Graph metadata, Organization JSON-LD, a root sitemap and robots.txt, and a Cloudflare Pages `_redirects` fallback. The supplied 404 component had an illegal JavaScript identifier; its export was renamed and it is now selected for non-root paths. Shared state toggles now expose keyboard activation and expanded state; footer/navigation anchors now route to home sections from nested paths. Removed the Framer promo badge. The production build succeeds outside the managed workspace sandbox. Vite responded successfully at `/` and `/src/main.tsx`.
+## Runtime and dependency inventory
 
-## Unresolved
+- Build/runtime platform: Node.js, Vite 6, React 19/React runtime modules embedded by the export.
+- The shipped page bundles its Framer runtime and animation modules locally. It needs no paid Framer hosting or server-side API to render.
+- Images, fonts, and the short video are served from the local static asset tree. Browser checks with non-local requests blocked found no render-breaking request failures.
+- NPM dependencies remain in `package.json`/lockfile for the Vite project; no new runtime package was added for this migration.
 
-This is not a completed visual migration. The main stylesheet has no media queries and contains fixed desktop dimensions; responsive behavior cannot be reconstructed to reference without the inaccessible original or supplied screenshots. Asset licensing and localization are unverified; exact public routes and CMS articles are unknown; login and sales CTA destinations remain template `framer.link` targets pending confirmed Singularity URLs. Forms were not found as a working backend flow in the supplied code and should not be invented. Playwright/browser automation was unavailable, and no original/local visual comparison was captured.
+## Open items
+
+Asset rights for the provided runtime, fonts, and media were not verified. The supplied corporate logo was used as provided. The reference set establishes a single landing page; no blog/CMS data, login backend, sales form backend, or additional route content was supplied. Cloudflare project connection, domain/DNS work, and production deployment remain external steps.
