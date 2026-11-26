@@ -20,8 +20,9 @@
 
 ## Vercel deployment
 
-- The existing GitHub `main` branch is connected to the existing Vercel project. Commit `c053460` is live and READY; verify each later push in Vercel before reporting it deployed.
+- The existing GitHub `main` branch is connected to the existing Vercel project. Commit `7683f49` is live and READY on 27 November 2026.
 - `DEPLOYMENT.md` records the Vercel build settings and contact email environment variables.
+- Latest browser pass: both routes at 13 widths, no overflow or page errors; local asset inventory passed 128/128 files; live Vercel homepage/contact/API and representative font/image/SVG/video URLs returned expected responses.
 
 ## Remaining external decisions
 
