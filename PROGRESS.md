@@ -24,4 +24,4 @@
 
 ## Verification
 
-The production build succeeds when run outside the managed workspace sandbox. Vite serves the app and the root and main module return HTTP 200. The build warns that the main JavaScript chunk exceeds 500 kB. Playwright and a browser executable are not available here, so automated visual/browser interaction testing was not performed. The original customized site and Fantom reference were inaccessible through available browser and retrieval tools. No pixel-fidelity claim is made. Git remote is configured; source changes are ready for a progress commit.
+The production build succeeds when run outside the managed workspace sandbox. Vite served the app; `/` and `/example-deep-link` returned HTTP 200, and the root HTML contained the Singularity title. The build warns that the main JavaScript chunk exceeds 500 kB. Playwright and a browser executable are not available here, so automated visual/browser interaction testing was not performed. The original customized site and Fantom reference were inaccessible through available browser and retrieval tools. No pixel-fidelity claim is made. Commit `54825c2` was pushed to `origin/main`.
